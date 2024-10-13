@@ -1,0 +1,20 @@
+# Ignore all files
+*
+
+# Allow specific files and directories
+!.gitignore
+!README.md
+
+!.config/
+
+!.config/hypr/
+!.config/hypr/**
+
+!.config/ags/
+!.config/ags/**
+
+!.config/kitty/
+!.config/kitty/**
+
+!.config/waybar/
+!.config/waybar/**

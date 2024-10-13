@@ -1,0 +1,16 @@
+diff --git a/node_modules/@emotion/utils/.bun-tag-62185b01be6664ec b/.bun-tag-62185b01be6664ec
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/package.json b/package.json
+index 8dcb50692de800fe60ef6791bd19c5c2bffc6c08..a9fee9a8a379d7cc612ebeeb66933e0202ce27ae 100644
+--- a/package.json
++++ b/package.json
+@@ -42,7 +42,7 @@
+       "edge-light": "./src/conditions/false.ts",
+       "workerd": "./src/conditions/false.ts",
+       "worker": "./src/conditions/false.ts",
+-      "browser": "./src/conditions/true.ts",
++      "browser": "./src/conditions/false.ts",
+       "default": "./src/conditions/is-browser.ts"
+     }
+   },
