@@ -1,5 +1,7 @@
 import { type Store, type EventCallable, sample, createEffect } from "effector";
 import { createEvent } from "effector/effector.umd";
+import type { PspecType } from "../../types/utils/gobject";
+import type { BaseType } from "typescript";
 
 interface Options<T> {
   store: Store<T>;
@@ -16,9 +18,30 @@ export function createEffectorSerivice<T = any>({
 
   const value = store.getState();
 
-  let storeType: string = typeof value;
+  type TypeOf =
+    | "string"
+    | "number"
+    | "bigint"
+    | "boolean"
+    | "symbol"
+    | "undefined"
+    | "object"
+    | "function";
 
-  if (storeType === "number") storeType = "float";
+  const typeToPspecTypeMap: Partial<Record<TypeOf, PspecType>> = {
+    string: "string",
+    number: "float",
+    bigint: "int",
+    boolean: "boolean",
+    object: "jsobject",
+    function: "widget",
+  };
+
+  if (!typeToPspecTypeMap[typeof value]) {
+    throw new Error(`Unsupported type: ${typeof value}`);
+  }
+
+  let storeType = typeToPspecTypeMap[typeof value];
 
   const storeName = "store";
   const signalName = `store-changed`;
