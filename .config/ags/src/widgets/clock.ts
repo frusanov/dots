@@ -1,7 +1,7 @@
 import { buttonStyle } from "../styles/button.style";
 import { css, cx } from "../utils/css";
 import { BaseButton } from "../components/base-button";
-import { toggleNotificationCentreVisibility } from "../stores/notification-centre";
+import { showCalendar } from "./calendar";
 
 // const hyprland = await Service.import("hyprland");
 
@@ -21,7 +21,7 @@ const labelStyle = css`
 `;
 
 export const Clock = BaseButton({
-  onClicked: () => toggleNotificationCentreVisibility(),
+  onClicked: () => showCalendar.setValue(!showCalendar.getValue()),
   child: Widget.Box({
     spacing: 8,
     homogeneous: false,

@@ -1,12 +1,19 @@
 import Gtk from "gi://Gtk";
-import { notificationCentreService } from "../stores/notification-centre";
 
-export const GtkCalendar = new Gtk.Calendar({
-  showDayNames: false,
-  showHeading: true,
-  visible: false,
-});
+export const showCalendar = Variable(false);
+
+const GtkCalendar = Widget.subclass(Gtk.Calendar);
 
 export const Calendar = Widget.Box({
-  children: [GtkCalendar],
+  children: [
+    GtkCalendar({
+      // @ts-ignore
+      showDayNames: false,
+
+      // @ts-ignore
+      showHeading: true,
+
+      visible: showCalendar.bind(),
+    }),
+  ],
 });

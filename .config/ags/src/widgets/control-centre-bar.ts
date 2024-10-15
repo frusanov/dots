@@ -1,4 +1,3 @@
-import { LucideIcon } from "../components/lucide-icon";
 import { buttonStyle } from "../styles/button.style";
 import { css, cx } from "../utils/css";
 
