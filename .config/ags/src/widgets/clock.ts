@@ -1,5 +1,5 @@
 import { buttonStyle } from "../styles/button.style";
-import { css } from "../utils/css";
+import { css, cx } from "../utils/css";
 import { BaseButton } from "../components/base-button";
 import { toggleNotificationCentreVisibility } from "../stores/notification-centre";
 
@@ -26,25 +26,21 @@ export const Clock = BaseButton({
     spacing: 8,
     homogeneous: false,
     vertical: false,
-    css: css`
-      box {
-        ${buttonStyle}
+    className: cx(
+      buttonStyle,
+      css`
         padding: 1px 1rem;
         margin: 0;
-      }
-    `,
+      `,
+    ),
     children: [
       Widget.Label({
         label: time.bind(),
-        css: css`
-          ${labelStyle}
-        `,
+        className: labelStyle,
       }),
       Widget.Label({
         label: date.bind(),
-        css: css`
-          ${labelStyle}
-        `,
+        className: labelStyle,
       }),
     ],
   }),

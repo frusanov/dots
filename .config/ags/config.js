@@ -6,6 +6,7 @@ try {
   await Utils.execAsync([
     'bun', 'build', entry,
     '--outdir', outdir,
+    '--conditions', 'worker',
     '--external', 'resource://*',
     '--external', 'gi://*',
   ]);

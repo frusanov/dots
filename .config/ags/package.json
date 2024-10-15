@@ -13,14 +13,12 @@
   },
   "dependencies": {
     "@emotion/css": "^11.13.4",
+    "@emotion/server": "^11.11.0",
     "change-case": "^5.4.4",
     "effector": "^23.2.3",
     "jsdom": "^25.0.1",
     "lodash": "^4.17.21",
+    "lucide-static": "^0.452.0",
     "stylis": "^4.3.4"
-  },
-  "patchedDependencies": {
-    "@emotion/utils@1.4.1": "patches/@emotion%2Futils@1.4.1.patch",
-    "@emotion/cache@11.13.1": "patches/@emotion%2Fcache@11.13.1.patch"
   }
 }
