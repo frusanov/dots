@@ -2,6 +2,7 @@ import { buttonStyle } from "../styles/button.style";
 import { css, cx } from "../utils/css";
 import { BaseButton } from "../components/base-button";
 import { showCalendar } from "./calendar";
+import { GradientBorder } from "./gradient-border";
 
 // const hyprland = await Service.import("hyprland");
 
@@ -20,28 +21,32 @@ const labelStyle = css`
   margin: 0;
 `;
 
-export const Clock = BaseButton({
-  onClicked: () => showCalendar.setValue(!showCalendar.getValue()),
-  child: Widget.Box({
-    spacing: 8,
-    homogeneous: false,
-    vertical: false,
-    className: cx(
-      buttonStyle,
-      css`
-        padding: 1px 1rem;
-        margin: 0;
-      `,
-    ),
-    children: [
-      Widget.Label({
-        label: time.bind(),
-        className: labelStyle,
+export const Clock = GradientBorder({
+  children: [
+    BaseButton({
+      onClicked: () => showCalendar.setValue(!showCalendar.getValue()),
+      child: Widget.Box({
+        spacing: 8,
+        homogeneous: false,
+        vertical: false,
+        className: cx(
+          buttonStyle,
+          css`
+            padding: 1px 1rem;
+            margin: 0;
+          `,
+        ),
+        children: [
+          Widget.Label({
+            label: time.bind(),
+            className: labelStyle,
+          }),
+          Widget.Label({
+            label: date.bind(),
+            className: labelStyle,
+          }),
+        ],
       }),
-      Widget.Label({
-        label: date.bind(),
-        className: labelStyle,
-      }),
-    ],
-  }),
+    }),
+  ],
 });

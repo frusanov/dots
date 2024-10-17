@@ -19,14 +19,14 @@ export const IconSlider = ({ icon, ...props }: IconSliderProps) => {
           min-height: 0;
           /* border: 1rem solid white; */
 
-          border-radius: 4rem;
+          border-radius: 1rem;
           background: rgba(255, 255, 255, 0.25);
           border: none;
         }
 
         highlight {
           min-height: 0;
-          border-radius: 2rem;
+          border-radius: 1rem;
           border: 1.5rem solid rgba(255, 255, 255, 0.5);
           background: none;
         }

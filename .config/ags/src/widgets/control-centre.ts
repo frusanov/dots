@@ -2,6 +2,7 @@ import { IconSlider } from "../widgets/icon-slider";
 import { buttonStyle } from "../styles/button.style";
 import { css, cx } from "../utils/css";
 import { ToggleExpand } from "./toggle-expand";
+import { GradientBorder } from "./gradient-border";
 
 const battery = await Service.import("battery");
 
@@ -10,24 +11,32 @@ export const ControlCentre = () =>
     homogeneous: false,
     vertical: false,
     className: css`
-      margin-top: 20px;
+      /* margin-top: 20px; */
     `,
 
     hpack: "end",
     children: [
-      Widget.Box({
-        className: cx(
-          buttonStyle,
-          css`
-            margin: 0 20px 0 0;
-          `,
-        ),
-        vertical: true,
+      GradientBorder({
+        className: css`
+          margin: 20px 20px 1rem 1rem;
+          box-shadow: 0 0 0.5rem rgba(26, 26, 26, 0.93);
+        `,
         children: [
-          IconSlider({
-            icon: "audio-volume-high-symbolic",
+          Widget.Box({
+            className: cx(
+              buttonStyle,
+              css`
+                padding: 1rem 0;
+              `,
+            ),
+            vertical: true,
+            children: [
+              IconSlider({
+                icon: "audio-volume-high-symbolic",
+              }),
+              ToggleExpand({}),
+            ],
           }),
-          ToggleExpand({}),
         ],
       }),
     ],

@@ -49,7 +49,7 @@ export function ToggleExpand({}: ToggleExpandProps) {
                 margin: 0 1em;
                 background: none;
                 min-height: 3rem;
-                border-radius: 2rem;
+                border-radius: 1rem;
 
                 border: none;
                 box-shadow: none;
@@ -80,7 +80,7 @@ export function ToggleExpand({}: ToggleExpandProps) {
             className: css`
               min-width: 2rem;
               background: rgba(255, 255, 255, 0.1);
-              border-radius: 50%;
+              border-radius: 1rem;
               border: none;
               box-shadow: none;
               padding: 0;
@@ -100,12 +100,33 @@ export function ToggleExpand({}: ToggleExpandProps) {
         revealChild: expanded.bind(),
         transitionDuration: 300,
         transition: "slide_down",
+        className: css`
+          padding-top: 1rem;
+          margin-top: -3rem;
+
+          border-radius: 1rem;
+
+          /* overflow: hidden; */
+        `,
         child: Widget.Box({
           className: css`
-            background: red;
+            background: transparent;
             /* margin-top: 1.5rem; */
             min-height: 6rem;
+            margin: 0 1rem;
+            border-radius: 1rem;
+
+            transition: all 0.3s;
+
+            &.expanded {
+              background: red;
+            }
           `,
+          setup(self) {
+            self.hook(expanded, (self) => {
+              self.toggleClassName("expanded", expanded.getValue());
+            });
+          },
         }),
       }),
     ],
