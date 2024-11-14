@@ -1,8 +1,10 @@
-import { IconSlider } from "../widgets/icon-slider";
-import { buttonStyle } from "../styles/button.style";
-import { css, cx } from "../utils/css";
-import { ToggleExpand } from "./toggle-expand";
-import { GradientBorder } from "./gradient-border";
+import { IconSlider } from "../../widgets/icon-slider";
+import { buttonStyle } from "../../styles/button.style";
+import { css, cx } from "../../utils/css";
+import { ToggleExpand } from "../toggle-expand";
+import { GradientBorder } from "../gradient-border";
+import { Sound } from "./sound";
+import { Brightness } from "./brightness";
 
 const battery = await Service.import("battery");
 
@@ -30,12 +32,7 @@ export const ControlCentre = () =>
               `,
             ),
             vertical: true,
-            children: [
-              IconSlider({
-                icon: "audio-volume-high-symbolic",
-              }),
-              ToggleExpand({}),
-            ],
+            children: [Sound(), Brightness()],
           }),
         ],
       }),

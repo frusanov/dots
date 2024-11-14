@@ -3,6 +3,7 @@ import { Workspaces } from "../widgets/workspaces";
 import { ControlCentreBar } from "../widgets/control-centre-bar";
 import { css } from "../utils/css";
 import { Clock } from "../widgets/clock";
+import { SystemTray } from "../widgets/system-tray";
 
 export const TopBarWindow = () =>
   Widget.Window({
@@ -12,6 +13,9 @@ export const TopBarWindow = () =>
     child: Widget.CenterBox({
       spacing: 8,
       vertical: false,
+      className: css`
+        margin: 1em 0 0;
+      `,
       startWidget: Widget.Box({
         spacing: 8,
         homogeneous: false,
@@ -27,7 +31,10 @@ export const TopBarWindow = () =>
         vertical: false,
         children: [Clock],
       }),
-      endWidget: ControlCentreBar,
+      endWidget: Widget.Box({
+        hpack: "end",
+        children: [SystemTray(), ControlCentreBar],
+      }),
     }),
 
     className: css`
