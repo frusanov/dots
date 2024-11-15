@@ -1,8 +1,8 @@
 import { buttonStyle } from "../styles/button.style";
 import { css, cx } from "../utils/css";
 import { BaseButton } from "../components/base-button";
-import { showCalendar } from "./calendar";
 import { GradientBorder } from "./gradient-border";
+import { showCalendar } from "../windows/calendar";
 
 // const hyprland = await Service.import("hyprland");
 

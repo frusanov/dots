@@ -1,27 +1,55 @@
 import type { IconProps } from "../../types/widgets/icon";
-import type { SliderProps } from "../../types/widgets/slider";
+import type { Slider, SliderProps } from "../../types/widgets/slider";
+import { BaseButton } from "../components/base-button";
 import { css, cx } from "../utils/css";
+import { ValueIcon } from "./value-icon";
 
 export interface IconSliderProps extends SliderProps {
-  icon: IconProps["icon"];
+  icon: IconProps["icon"] | Array<IconProps["icon"]>;
+  onToggle?: () => void;
 }
 
-export const IconSlider = ({ icon, ...props }: IconSliderProps) => {
+export const IconSlider = ({
+  icon,
+  onToggle,
+  onChange,
+  ...props
+}: IconSliderProps) => {
+  const iconsArray = Array.isArray(icon);
+  const iconSafe = iconsArray ? icon[0] : icon;
+
+  const innerValue = Variable<number>(props.value as number);
+
+  const handleToggle = () => {
+    if (onToggle) onToggle();
+  };
+
+  const handleChange: SliderProps["onChange"] = (slider) => {
+    innerValue.setValue(slider.value / 100);
+    if (onChange) (onChange as any)(slider);
+  };
+
+  const iconStyle = css`
+    margin-left: 0.5rem;
+    padding: 0;
+    min-width: 1rem;
+    min-height: 1rem;
+
+    font-size: 1rem;
+  `;
+
   return Widget.Overlay({
     "pass-through": true,
     child: Widget.Slider({
       ...props,
-      marks: [1, 2],
+      onChange: handleChange,
       drawValue: false,
       className: cx([
         css`
           min-width: 320px;
 
           trough {
-            /* background-color: red; */
             min-height: 0;
-            /* border: 1rem solid white; */
-
             border-radius: 1rem;
             background: rgba(255, 255, 255, 0.25);
             border: none;
@@ -30,7 +58,7 @@ export const IconSlider = ({ icon, ...props }: IconSliderProps) => {
           highlight {
             min-height: 0;
             border-radius: 1rem;
-            border: 1.5rem solid rgba(255, 255, 255, 0.5);
+            border: 1rem solid rgba(255, 255, 255, 0.5);
             background: none;
           }
 
@@ -52,19 +80,28 @@ export const IconSlider = ({ icon, ...props }: IconSliderProps) => {
       max: 100,
     }),
     overlays: [
-      Widget.Icon({
-        hpack: "start",
-        icon,
+      BaseButton({
         className: css`
-          margin-left: 1.75rem;
-          margin-top: 0.25rem;
-
           min-width: 1rem;
           min-height: 1rem;
-          padding: 0;
-
-          font-size: 1rem;
+          margin-left: 0.75rem;
+          padding: 0.5em 0.5em 0.5em 0;
+          border-radius: 50%;
         `,
+        onClicked: handleToggle,
+        hpack: "start",
+        vpack: "center",
+        cursor: "pointer",
+        child: iconsArray
+          ? ValueIcon({
+              icons: icon,
+              value: innerValue.bind("value"),
+              className: iconStyle,
+            })
+          : Widget.Icon({
+              icon: iconSafe,
+              className: iconStyle,
+            }),
       }),
     ],
   });

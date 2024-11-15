@@ -16,14 +16,22 @@ export const Sound = () => {
     vertical: true,
     children: [
       IconSlider({
-        icon: "audio-volume-high-symbolic",
+        icon: [
+          "audio-volume-low",
+          "audio-volume-medium",
+          "audio-volume-high-symbolic",
+        ],
         onChange: handleSpeakerChange,
       }).hook(audio.speaker, (self) => {
         const slider = self.child as Slider<Attr>;
         slider.value = audio.speaker.volume * 100;
       }),
       IconSlider({
-        icon: "microphone-sensitivity-high",
+        icon: [
+          "microphone-sensitivity-low",
+          "microphone-sensitivity-medium",
+          "microphone-sensitivity-high",
+        ],
         onChange: handleMicrophoneChange,
       }).hook(audio.microphone, (self) => {
         const slider = self.child as Slider<Attr>;

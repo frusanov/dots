@@ -4,6 +4,7 @@ import { ControlCentreBar } from "../widgets/control-centre-bar";
 import { css } from "../utils/css";
 import { Clock } from "../widgets/clock";
 import { SystemTray } from "../widgets/system-tray";
+import { CPUStats } from "../widgets/cpu-stats";
 
 export const TopBarWindow = () =>
   Widget.Window({
@@ -33,7 +34,7 @@ export const TopBarWindow = () =>
       }),
       endWidget: Widget.Box({
         hpack: "end",
-        children: [SystemTray(), ControlCentreBar],
+        children: [CPUStats(), SystemTray(), ControlCentreBar()],
       }),
     }),
 

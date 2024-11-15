@@ -1,7 +1,5 @@
 import Gtk from "gi://Gtk";
 
-export const showCalendar = Variable(false);
-
 const GtkCalendar = Widget.subclass(Gtk.Calendar);
 
 export const Calendar = Widget.Box({
@@ -12,8 +10,6 @@ export const Calendar = Widget.Box({
 
       // @ts-ignore
       showHeading: true,
-
-      visible: showCalendar.bind(),
     }),
   ],
 });

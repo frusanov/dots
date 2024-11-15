@@ -7,9 +7,15 @@ import { ControlCentreBar } from "./widgets/control-centre-bar";
 import { TopBarWindow } from "./windows/top-bar";
 import { CalendarWindow } from "./windows/calendar";
 import { ControlCentreWindow } from "./windows/control-centre";
+import { BackDropWindow } from "./windows/backdrop";
 
 App.config({
-  windows: [TopBarWindow(), CalendarWindow(), ControlCentreWindow()],
+  windows: [
+    BackDropWindow(),
+    TopBarWindow(),
+    CalendarWindow(),
+    ControlCentreWindow(),
+  ],
   style: `
     * {
       font-size: 14px;
