@@ -2,11 +2,7 @@ import { buttonStyle } from "../styles/button.style";
 import { css, cx } from "../utils/css";
 import { BaseButton } from "../components/base-button";
 import { GradientBorder } from "./gradient-border";
-import { showCalendar } from "../windows/calendar";
-
-// const hyprland = await Service.import("hyprland");
-
-// const dispatch = (ws) => hyprland.messageAsync(`dispatch workspace ${ws}`);
+import { showInfoCentre } from "../windows/info-centre";
 
 const time = Variable("", {
   poll: [1000, 'date "+%H:%M"'],
@@ -24,7 +20,7 @@ const labelStyle = css`
 export const Clock = GradientBorder({
   children: [
     BaseButton({
-      onClicked: () => showCalendar.setValue(!showCalendar.getValue()),
+      onClicked: () => showInfoCentre.setValue(!showInfoCentre.getValue()),
       child: Widget.Box({
         spacing: 8,
         homogeneous: false,

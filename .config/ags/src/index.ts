@@ -8,12 +8,13 @@ import { TopBarWindow } from "./windows/top-bar";
 import { CalendarWindow } from "./windows/calendar";
 import { ControlCentreWindow } from "./windows/control-centre";
 import { BackDropWindow } from "./windows/backdrop";
+import { InfoCentreWindow } from "./windows/info-centre";
 
 App.config({
   windows: [
     BackDropWindow(),
     TopBarWindow(),
-    CalendarWindow(),
+    InfoCentreWindow(),
     ControlCentreWindow(),
   ],
   style: `
